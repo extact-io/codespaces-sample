@@ -57,31 +57,6 @@ curl -s -X GET http://localhost:8080/health
 ```
 
 
-
-## Building a Native Image
-
-Make sure you have GraalVM locally installed:
-
-```
-$GRAALVM_HOME/bin/native-image --version
-```
-
-Build the native image using the native image profile:
-
-```
-mvn package -Pnative-image
-```
-
-This uses the helidon-maven-plugin to perform the native compilation using your installed copy of GraalVM. It might take a while to complete.
-Once it completes start the application using the native executable (no JVM!):
-
-```
-./target/helidon-quickstart-mp
-```
-
-Yep, it starts fast. You can exercise the application窶冱 endpoints as before.
-
-
 ## Building the Docker Image
 
 ```
@@ -95,7 +70,7 @@ docker run --rm -p 8080:8080 helidon-quickstart-mp:latest
 ```
 
 Exercise the application as described above.
-                                
+
 
 ## Building a Custom Runtime Image
 
@@ -114,20 +89,3 @@ its runtime dependencies and the JDK modules it depends on. You can start your a
 ```
 ./target/helidon-quickstart-mp-jri/bin/start
 ```
-
-Class Data Sharing (CDS) Archive
-Also included in the custom image is a Class Data Sharing (CDS) archive that improves your application遯ｶ蜀ｱ startup
-performance and in-memory footprint. You can learn more about Class Data Sharing in the JDK documentation.
-
-The CDS archive increases your image size to get these performance optimizations. It can be of significant size (tens of MB).
-The size of the CDS archive is reported at the end of the build output.
-
-If you遯ｶ蝗� rather have a smaller image size (with a slightly increased startup time) you can skip the creation of the CDS
-archive by executing your build like this:
-
-```
-mvn package -Pjlink-image -Djlink.image.addClassDataSharingArchive=false
-```
-
-For more information on available configuration options see the helidon-maven-plugin documentation.
-                                
