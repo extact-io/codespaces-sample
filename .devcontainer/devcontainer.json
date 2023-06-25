@@ -12,6 +12,24 @@
 			"installGradle": "false"
 		},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mhutchie.git-graph",
+				"MS-vsliveshare.vsliveshare"
+			],
+			"settings": {
+				// ファイル保存時に行末スペースを削除する
+				"files.trimTrailingWhitespace": true,
+				// ファイル保存時にimport文を編成(並び替えと不要な文の削除)する
+				"java.saveActions.organizeImports": true,
+				// pomを更新したらクラスパスも自動で更新する
+				"java.configuration.updateBuildConfiguration": "automatic",
+				// ./java-formatter.xmlにしたがってJavaコードをフォーマットする
+				"java.format.settings.url": "java-formatter.xml"
+			}
+		}
 	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
